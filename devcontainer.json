@@ -1,0 +1,21 @@
+{
+    "name": "UVM Development Environment",
+    "image": "ubuntu:latest",
+    "features": {
+        "ghcr.io/devcontainers/features/common-utils:2": {
+            "installZsh": true,
+            "upgradePackages": true
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "mshr-h.veriloghdl",
+                "gvekony.systemverilog-1800-2012",
+                "rjyoung.systemverilog"
+            ]
+        }
+    },
+    "postCreateCommand": "apt-get update && apt-get install -y iverilog verilator gtkwave",
+    "remoteUser": "vscode"
+}
