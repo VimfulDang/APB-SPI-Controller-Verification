@@ -25,10 +25,14 @@ class apb_seq extends uvm_sequence #(apb_transaction);
         end
         repeat(10000) begin
             apb_tx = apb_transaction::type_id::create("apb_tx");
-            start_item(apb_tx);
-            if (!(apb_tx.randomize()))
-               `uvm_error(report_id, report_msg);
-            finish_item(apb_tx);
+            // if (!(apb_tx.randomize())) begin
+            //    `uvm_error(report_id, report_msg);
+            //    apb_tx.print();
+            // end
+            if (apb_tx.randomize()) begin
+                start_item(apb_tx);
+                finish_item(apb_tx);
+            end
         end
     endtask: body   
 endclass

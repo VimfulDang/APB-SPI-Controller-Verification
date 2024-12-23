@@ -11,7 +11,7 @@ class apb_transaction extends uvm_sequence_item;
                                     };
  
     
-    constraint addr {paddr inside cfg_reg_addr;
+    constraint addr {paddr inside {cfg_reg_addr};
                      pdata[31:16] == 16'd0;
                      };
     
@@ -50,6 +50,15 @@ class apb_transaction extends uvm_sequence_item;
         foreach(cfg_reg_addr[i]) begin
             cfg_reg_addr[i] = 32'hE002_0000 + i*4;
         end
+    endfunction
+
+    // Add this function to print the object's fields
+    virtual function void do_print(uvm_printer printer);
+        super.do_print(printer);
+        printer.print_field("paddr", paddr, $bits(paddr));
+        printer.print_field("pdata", pdata, $bits(pdata));
+        printer.print_field("pwrite", pwrite, $bits(pwrite));
+        printer.print_field("psel", psel, $bits(psel));
     endfunction
     
     virtual function string convert2str();

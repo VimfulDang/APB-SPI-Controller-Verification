@@ -1,4 +1,5 @@
 `timescale 1ns/10ps
+`include "uvm_macros.svh"
 `include "apb_if.sv"
 `include "spi_if.sv"
 `include "apb_pkg.sv"
